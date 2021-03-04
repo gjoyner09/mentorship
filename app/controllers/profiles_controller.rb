@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  before_action :set_user, only: %i[ new create edit update destroy ]
+  before_action :set_user, only: %i[ index new create edit update destroy mentees ]
   before_action :set_profiles, only: %i[ index new create ]
 
   # GET /profiles or /profiles.json
@@ -56,6 +56,9 @@ class ProfilesController < ApplicationController
       format.html { redirect_to profiles_url, notice: "Profile was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def mentees
   end
 
   private

@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Profiles</h1>
+<% if user.mentee == false %>
+  <h2>You are seeing a subset of mentors that have public profiles. For the full list of available mentors, please sign up as a mentee.</h2>
+<% end %>
 
 <table>
   <thead>
@@ -20,7 +23,7 @@
 
   <tbody>
     <% @profiles.each do |profile| %>
-      <% if profile.mentor_public == true && profile.mentor_availability == true %>
+      <% if profile.mentor == true && profile.mentor_public == true && profile.mentor_availability == true || (@user.mentee == true && profile.mentor == true && profile.mentor_availability == true) %>
         <tr>
           <td><%= profile.name %></td>
           <td><%= profile.age %></td>
