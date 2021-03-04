@@ -52,3 +52,4 @@ gem 'rspec-rails'
 
 # Devise for authentication
 gem 'devise'
+gem "aws-sdk-s3", "~> 1.89"

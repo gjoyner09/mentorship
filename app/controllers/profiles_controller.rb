@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
   before_action :set_user, only: %i[ new create edit update destroy ]
+  before_action :set_profiles, only: %i[ index new create ]
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = Profile.all
   end
 
   # GET /profiles/1 or /profiles/1.json
@@ -23,6 +23,7 @@ class ProfilesController < ApplicationController
   # POST /profiles or /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.user_id = current_user.id
 
     respond_to do |format|
       if @profile.save
@@ -65,10 +66,14 @@ class ProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.require(:profile).permit(:name, :age, :reason_for_interest, :interests, :discussion_topics, :country_id, :gender_id, :sexuality_id, :identity_id, :mentor, :mentee, :mentor_public, :mentee_public, :mentor_availability, :mentee_availability)
+      params.require(:profile).permit(:name, :age, :reason_for_interest, :interests, :discussion_topics, :country_id, :gender_id, :sexuality_id, :identity_id, :mentor, :mentee, :mentor_public, :mentee_public, :mentor_availability, :mentee_availability, :picture)
     end
 
     def set_user
       @user = current_user
+    end
+
+    def set_profiles
+      @profiles = Profile.all
     end
 end

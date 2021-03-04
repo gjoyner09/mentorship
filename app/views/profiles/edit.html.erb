@@ -1,10 +1,11 @@
-<% if profile.user != current_user %>
+<% if @profile.user_id != current_user.id %>
     <h1>You can only edit your own profile</h1>
 <% else %>
     <h1>Editing Profile</h1>
 
     <%= render 'form', profile: @profile %>
 
+    <%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
     <%= link_to 'Show', @profile %> |
     <%= link_to 'Back', profiles_path %>
 <% end %>

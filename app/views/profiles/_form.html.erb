@@ -38,22 +38,22 @@
 
   <div class="field">
     <%= form.label :country_id %>
-    <%= form.text_field :country_id %>
+    <%= form.collection_select :country_id, Country.order(:country_name), :id, :country_name %>
   </div>
 
   <div class="field">
     <%= form.label :gender_id %>
-    <%= form.text_field :gender_id %>
+    <%= form.collection_select :gender_id, Gender.order(:id), :id, :gender_name %>
   </div>
 
   <div class="field">
     <%= form.label :sexuality_id %>
-    <%= form.text_field :sexuality_id %>
+    <%= form.collection_select :sexuality_id, Sexuality.order(:id), :id, :sexuality_name %>
   </div>
 
   <div class="field">
     <%= form.label :identity_id %>
-    <%= form.text_field :identity_id %>
+    <%= form.collection_select :identity_id, Identity.order(:id), :id, :identity_name %>
   </div>
 
   <div class="field">
@@ -84,6 +84,11 @@
   <div class="field">
     <%= form.label :mentee_availability %>
     <%= form.check_box :mentee_availability %>
+  </div>
+
+  <div class="field">
+    <%= form.label :picture %>
+    <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
   </div>
 
   <div class="actions">

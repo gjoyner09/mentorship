@@ -78,6 +78,10 @@
     <%= @profile.mentee_availability %>
   </p>
 
+  <br>
+
+  <%= image_tag @profile.picture if @profile.picture.attached? %>
+
   <%= link_to 'Edit', edit_profile_path(@profile) %> |
   <%= link_to 'Back', profiles_path %>
 <% end %>
