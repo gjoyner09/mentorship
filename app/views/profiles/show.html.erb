@@ -1,0 +1,83 @@
+<% if @profile.mentor_public == false %>
+  <h1>This profile is private</h1>
+<% else %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @profile.name %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @profile.age %>
+  </p>
+
+  <p>
+    <strong>Reason for interest:</strong>
+    <%= @profile.reason_for_interest %>
+  </p>
+
+  <p>
+    <strong>Interests:</strong>
+    <%= @profile.interests %>
+  </p>
+
+  <p>
+    <strong>Discussion topics:</strong>
+    <%= @profile.discussion_topics %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+    <%= @profile.country_id %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= @profile.gender_id %>
+  </p>
+
+  <p>
+    <strong>Sexuality:</strong>
+    <%= @profile.sexuality_id %>
+  </p>
+
+  <p>
+    <strong>Identity:</strong>
+    <%= @profile.identity_id %>
+  </p>
+
+  <p>
+    <strong>Mentor:</strong>
+    <%= @profile.mentor %>
+  </p>
+
+  <p>
+    <strong>Mentee:</strong>
+    <%= @profile.mentee %>
+  </p>
+
+  <p>
+    <strong>Mentor public:</strong>
+    <%= @profile.mentor_public %>
+  </p>
+
+  <p>
+    <strong>Mentee public:</strong>
+    <%= @profile.mentee_public %>
+  </p>
+
+  <p>
+    <strong>Mentor availability:</strong>
+    <%= @profile.mentor_availability %>
+  </p>
+
+  <p>
+    <strong>Mentee availability:</strong>
+    <%= @profile.mentee_availability %>
+  </p>
+
+  <%= link_to 'Edit', edit_profile_path(@profile) %> |
+  <%= link_to 'Back', profiles_path %>
+<% end %>

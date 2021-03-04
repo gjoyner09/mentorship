@@ -1,0 +1,92 @@
+<%= form_with(model: profile) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason_for_interest %>
+    <%= form.text_area :reason_for_interest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interests %>
+    <%= form.text_area :interests %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discussion_topics %>
+    <%= form.text_area :discussion_topics %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.text_field :country_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender_id %>
+    <%= form.text_field :gender_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexuality_id %>
+    <%= form.text_field :sexuality_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :identity_id %>
+    <%= form.text_field :identity_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor %>
+    <%= form.check_box :mentor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentee %>
+    <%= form.check_box :mentee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor_public %>
+    <%= form.check_box :mentor_public %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentee_public %>
+    <%= form.check_box :mentee_public %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor_availability %>
+    <%= form.check_box :mentor_availability %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentee_availability %>
+    <%= form.check_box :mentee_availability %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
