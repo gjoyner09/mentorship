@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "pages#index", as: "home"
   get "/donate", to: "pages#donate", as: "donate"
   get "/mentees", to: "profiles#mentees", as: "mentees"
+  get "/profiles/details", to: "profiles#details", as: "details"
 end

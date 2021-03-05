@@ -61,6 +61,12 @@ class ProfilesController < ApplicationController
   def mentees
   end
 
+  def details
+    if user_signed_in?
+      @detail = Profile.find_by(user_id: current_user.id)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
@@ -79,4 +85,5 @@ class ProfilesController < ApplicationController
     def set_profiles
       @profiles = Profile.all
     end
+
 end

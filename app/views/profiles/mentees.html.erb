@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if user.mentor == false %>
+<% if !(user_signed_in?) || Profile.find_by(user_id: current_user.id).mentor == false %>
     <h1>This page is only available to those who have signed up as a mentor</h1>
 <% else %>
 

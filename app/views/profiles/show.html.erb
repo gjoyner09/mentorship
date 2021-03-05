@@ -1,4 +1,5 @@
-<% if @profile.mentor_public == false %>
+<%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
+<% if (@profile.mentor == true && (current_user.id != @profile.user_id && @profile.mentor_public == false && Profile.find_by(user_id: current_user.id).mentee == false)) || (@profile.mentee == true && (current_user.id != @profile.user_id || (Profile.find_by(user_id: current_user.id).mentor == false || @profile.mentee_public == false))) %>
   <h1>This profile is private</h1>
 <% else %>
   <p id="notice"><%= notice %></p>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Profiles</h1>
-<% if user.mentee == false %>
+<h1>Mentors</h1>
+<% if !(user_signed_in?) || Profile.find_by(user_id: current_user.id).mentee == false %>
   <h2>You are seeing a subset of mentors that have public profiles. For the full list of available mentors, please sign up as a mentee.</h2>
 <% end %>
 

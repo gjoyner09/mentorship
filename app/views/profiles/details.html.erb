@@ -1,0 +1,88 @@
+<%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the detail is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
+<% if !@detail %>%
+    <h1>You must sign in and create a profile to view this page</h1>
+<% else %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @detail.name %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @detail.age %>
+  </p>
+
+  <p>
+    <strong>Reason for interest:</strong>
+    <%= @detail.reason_for_interest %>
+  </p>
+
+  <p>
+    <strong>Interests:</strong>
+    <%= @detail.interests %>
+  </p>
+
+  <p>
+    <strong>Discussion topics:</strong>
+    <%= @detail.discussion_topics %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+    <%= @detail.country_id %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= @detail.gender_id %>
+  </p>
+
+  <p>
+    <strong>Sexuality:</strong>
+    <%= @detail.sexuality_id %>
+  </p>
+
+  <p>
+    <strong>Identity:</strong>
+    <%= @detail.identity_id %>
+  </p>
+
+  <p>
+    <strong>Mentor:</strong>
+    <%= @detail.mentor %>
+  </p>
+
+  <p>
+    <strong>Mentee:</strong>
+    <%= @detail.mentee %>
+  </p>
+
+  <p>
+    <strong>Mentor public:</strong>
+    <%= @detail.mentor_public %>
+  </p>
+
+  <p>
+    <strong>Mentee public:</strong>
+    <%= @detail.mentee_public %>
+  </p>
+
+  <p>
+    <strong>Mentor availability:</strong>
+    <%= @detail.mentor_availability %>
+  </p>
+
+  <p>
+    <strong>Mentee availability:</strong>
+    <%= @detail.mentee_availability %>
+  </p>
+
+  <br>
+
+  <%= image_tag @detail.picture if @detail.picture.attached? %>
+
+  <%= link_to 'Edit', edit_profile_path(@detail) %> |
+  <%= link_to 'Back', profiles_path %>
+<% end %>

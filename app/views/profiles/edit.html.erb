@@ -1,4 +1,4 @@
-<% if @profile.user_id != current_user.id %>
+<% if !(user_signed_in?) || @profile.user_id != current_user.id %>
     <h1>You can only edit your own profile</h1>
 <% else %>
     <h1>Editing Profile</h1>

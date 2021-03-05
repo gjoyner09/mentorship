@@ -1,7 +1,10 @@
 <nav>
     <%= link_to "Home", home_path %>
     <%= link_to "Donate", donate_path %>
+    <%= link_to "Mentors", profiles_path %>
+    <%= link_to "Mentees", mentees_path %>
     <% if user_signed_in? %>
+        <%= link_to "Your Profile", details_path %>
         <% if Profile.find_by(user_id: current_user.id) %>
             <%= link_to "Edit Profile", edit_profile_path(Profile.find_by(user_id: current_user.id).id) %>
         <% else %>
