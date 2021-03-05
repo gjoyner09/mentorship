@@ -1,7 +1,5 @@
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
-<% if (@profile.mentor == true && (current_user.id != @profile.user_id && @profile.mentor_public == false && Profile.find_by(user_id: current_user.id).mentee == false)) || (@profile.mentee == true && (current_user.id != @profile.user_id || (Profile.find_by(user_id: current_user.id).mentor == false || @profile.mentee_public == false))) %>
-  <h1>This profile is private</h1>
-<% else %>
+<% if (@profile.mentor == true && (@profile.mentor_public == true || (user_signed_in? && @user_profile && @user_profile.mentee == true))) || (@profile.mentee == true && @profile.mentee_public == true && user_signed_in? && @user_profile && @user_profile.mentor == true) %>
   <p id="notice"><%= notice %></p>
 
   <p>
@@ -85,4 +83,7 @@
 
   <%= link_to 'Edit', edit_profile_path(@profile) %> |
   <%= link_to 'Back', profiles_path %>
+
+<% else %>
+  <h1>This profile is private</h1>
 <% end %>

@@ -1,88 +1,93 @@
-<%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the detail is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
-<% if !@detail %>%
-    <h1>You must sign in and create a profile to view this page</h1>
+<%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the user_profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
+<% if !@user_profile %>
+    <h1>You must create a mentor/mentee profile to view this page</h1>
 <% else %>
   <p id="notice"><%= notice %></p>
 
   <p>
     <strong>Name:</strong>
-    <%= @detail.name %>
+    <%= @user_profile.name %>
   </p>
 
   <p>
     <strong>Age:</strong>
-    <%= @detail.age %>
+    <%= @user_profile.age %>
   </p>
 
   <p>
     <strong>Reason for interest:</strong>
-    <%= @detail.reason_for_interest %>
+    <%= @user_profile.reason_for_interest %>
   </p>
 
   <p>
     <strong>Interests:</strong>
-    <%= @detail.interests %>
+    <%= @user_profile.interests %>
   </p>
 
   <p>
     <strong>Discussion topics:</strong>
-    <%= @detail.discussion_topics %>
+    <%= @user_profile.discussion_topics %>
   </p>
 
   <p>
     <strong>Country:</strong>
-    <%= @detail.country_id %>
+    <%= @user_profile.country_id %>
   </p>
 
   <p>
     <strong>Gender:</strong>
-    <%= @detail.gender_id %>
+    <%= @user_profile.gender_id %>
   </p>
 
   <p>
     <strong>Sexuality:</strong>
-    <%= @detail.sexuality_id %>
+    <%= @user_profile.sexuality_id %>
   </p>
 
   <p>
     <strong>Identity:</strong>
-    <%= @detail.identity_id %>
+    <%= @user_profile.identity_id %>
   </p>
 
   <p>
     <strong>Mentor:</strong>
-    <%= @detail.mentor %>
+    <%= @user_profile.mentor %>
   </p>
 
   <p>
     <strong>Mentee:</strong>
-    <%= @detail.mentee %>
+    <%= @user_profile.mentee %>
   </p>
 
   <p>
     <strong>Mentor public:</strong>
-    <%= @detail.mentor_public %>
+    <%= @user_profile.mentor_public %>
   </p>
 
   <p>
     <strong>Mentee public:</strong>
-    <%= @detail.mentee_public %>
+    <%= @user_profile.mentee_public %>
   </p>
 
   <p>
     <strong>Mentor availability:</strong>
-    <%= @detail.mentor_availability %>
+    <%= @user_profile.mentor_availability %>
   </p>
 
   <p>
     <strong>Mentee availability:</strong>
-    <%= @detail.mentee_availability %>
+    <%= @user_profile.mentee_availability %>
   </p>
 
   <br>
 
-  <%= image_tag @detail.picture if @detail.picture.attached? %>
+  <%= image_tag @user_profile.picture if @user_profile.picture.attached? %>
 
-  <%= link_to 'Edit', edit_profile_path(@detail) %> |
+  <%= link_to 'Edit', edit_profile_path(@user_profile) %> |
   <%= link_to 'Back', profiles_path %>
 <% end %>
+
+<br>
+<br>
+
+<%= link_to 'Edit login details', edit_user_registration_path %>

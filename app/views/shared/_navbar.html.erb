@@ -4,11 +4,9 @@
     <%= link_to "Mentors", profiles_path %>
     <%= link_to "Mentees", mentees_path %>
     <% if user_signed_in? %>
-        <%= link_to "Your Profile", details_path %>
-        <% if Profile.find_by(user_id: current_user.id) %>
-            <%= link_to "Edit Profile", edit_profile_path(Profile.find_by(user_id: current_user.id).id) %>
-        <% else %>
-            <%= link_to "Register as Mentor", new_profile_path %>
+        <%= link_to "My Profile", details_path %>
+        <% if !@user_profile %>
+            <%= link_to "Register as Mentor/Mentee", new_profile_path %>
         <% end %>
         <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
     <% else %>
