@@ -1,0 +1,12 @@
+<h1>Redirecting to Stripe</h1>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    window.onload = (event) => {
+        const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+        stripe.redirectToCheckout({
+            sessionId: "<%= @session %>"
+        });
+    };
+</script>

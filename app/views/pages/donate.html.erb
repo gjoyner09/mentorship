@@ -1,6 +1,6 @@
 <h1>Donate</h1>
 
-<%= form_with do |form| %>
+<%= form_with url:"/donate", method: :post do |form| %>
 
     <div class="field">
         <%= form.label :amount %>
