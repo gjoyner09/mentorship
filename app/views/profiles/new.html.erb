@@ -1,0 +1,11 @@
+<% if !user_signed_in? %>
+    <h1>You must sign in first</h1>
+<% elsif @profiles.find_by(user_id: current_user.id) %>
+    <h1>You've already created a profile. To make changes, click Edit.</h1>
+<% else %>
+    <h1>New Profile</h1>
+
+    <%= render 'form', profile: @profile %>
+
+    <%= link_to 'Back', profiles_path %>
+<% end %>
