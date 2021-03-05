@@ -16,7 +16,7 @@ Gender.create(gender_name: "Other")
 
 # Gender identity seeds
 Identity.create(identity_name: "Transgender")
-Identity.create(identity_name: "Cisgender (i.e. not transgender)")
+Identity.create(identity_name: "Cisgender")
 Identity.create(identity_name: "Unsure")
 Identity.create(identity_name: "Other")
 

@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  before_action :set_user, only: %i[ index new create edit update destroy mentees ]
-  before_action :set_profiles, only: %i[ index new create ]
+  before_action :set_profiles, only: %i[ index mentees ]
 
   # GET /profiles or /profiles.json
   def index
@@ -61,6 +60,9 @@ class ProfilesController < ApplicationController
   def mentees
   end
 
+  def details
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
@@ -72,11 +74,8 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:name, :age, :reason_for_interest, :interests, :discussion_topics, :country_id, :gender_id, :sexuality_id, :identity_id, :mentor, :mentee, :mentor_public, :mentee_public, :mentor_availability, :mentee_availability, :picture)
     end
 
-    def set_user
-      @user = current_user
-    end
-
     def set_profiles
       @profiles = Profile.all
     end
+
 end

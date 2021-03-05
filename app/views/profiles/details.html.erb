@@ -1,0 +1,93 @@
+<%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the user_profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
+<% if !@user_profile %>
+    <h1>You must create a mentor/mentee profile to view this page</h1>
+<% else %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @user_profile.name %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @user_profile.age %>
+  </p>
+
+  <p>
+    <strong>Reason for interest:</strong>
+    <%= @user_profile.reason_for_interest %>
+  </p>
+
+  <p>
+    <strong>Interests:</strong>
+    <%= @user_profile.interests %>
+  </p>
+
+  <p>
+    <strong>Discussion topics:</strong>
+    <%= @user_profile.discussion_topics %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+    <%= @user_profile.country_id %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= @user_profile.gender_id %>
+  </p>
+
+  <p>
+    <strong>Sexuality:</strong>
+    <%= @user_profile.sexuality_id %>
+  </p>
+
+  <p>
+    <strong>Identity:</strong>
+    <%= @user_profile.identity_id %>
+  </p>
+
+  <p>
+    <strong>Mentor:</strong>
+    <%= @user_profile.mentor %>
+  </p>
+
+  <p>
+    <strong>Mentee:</strong>
+    <%= @user_profile.mentee %>
+  </p>
+
+  <p>
+    <strong>Mentor public:</strong>
+    <%= @user_profile.mentor_public %>
+  </p>
+
+  <p>
+    <strong>Mentee public:</strong>
+    <%= @user_profile.mentee_public %>
+  </p>
+
+  <p>
+    <strong>Mentor availability:</strong>
+    <%= @user_profile.mentor_availability %>
+  </p>
+
+  <p>
+    <strong>Mentee availability:</strong>
+    <%= @user_profile.mentee_availability %>
+  </p>
+
+  <br>
+
+  <%= image_tag @user_profile.picture if @user_profile.picture.attached? %>
+
+  <%= link_to 'Edit', edit_profile_path(@user_profile) %> |
+  <%= link_to 'Back', profiles_path %>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'Edit login details', edit_user_registration_path %>

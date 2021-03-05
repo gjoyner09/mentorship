@@ -1,1 +1,14 @@
 <h1>Donate</h1>
+
+<%= form_with do |form| %>
+
+    <div class="field">
+        <%= form.label :amount %>
+        <%= form.number_field :amount %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+
+<% end %>
