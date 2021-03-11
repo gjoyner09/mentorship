@@ -5,6 +5,7 @@
     <%= link_to "Mentees", mentees_path %>
     <% if user_signed_in? %>
         <%= link_to "My Profile", details_path %>
+        <%= link_to "Messages", messages_path %>
         <% if !@user_profile %>
             <%= link_to "Register as Mentor/Mentee", new_profile_path %>
         <% end %>
