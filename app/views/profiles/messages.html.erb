@@ -18,14 +18,20 @@
                 <tr>
                     <% if message.sender_id == current_user.id %>
                         <td>Sent</td>
-                        <td><%= message.receiver_id %></td>
+                        <%# Finds the name of the person the message was sent to/from and links to her/his page %>
+                        <td><%= link_to Profile.find_by(user_id: message.receiver_id).name, profile_path(Profile.find_by(user_id: message.receiver_id).id) %></td>
                     <% else %>
                         <td>Received</td>
-                        <td><%= message.sender_id %></td>
+                        <%# Finds the name of the person the message was sent to/from and links to her/his page %>
+                        <td><%= link_to Profile.find_by(user_id: message.sender_id).name, profile_path(Profile.find_by(user_id: message.sender_id).id) %></td>
                     <% end %>
                     <td><%= message.message %></td>
                     <td><%= message.created_at %></td>
-                    <td>Respond</td>
+                    <% if message.sender_id == current_user.id %>
+                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.receiver_id).id) %></td>
+                    <% else %>
+                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.sender_id).id) %></td>
+                    <% end %>
                 </tr>
             <% end %>
         </tbody>
