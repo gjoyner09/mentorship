@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_022851) do
+ActiveRecord::Schema.define(version: 2021_03_11_043744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_022851) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.integer "mentor_id"
+    t.integer "mentee_id"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
@@ -95,6 +103,16 @@ ActiveRecord::Schema.define(version: 2021_03_11_022851) do
     t.index ["identity_id"], name: "index_profiles_on_identity_id"
     t.index ["sexuality_id"], name: "index_profiles_on_sexuality_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "sender_role"
+    t.string "receiver_role"
   end
 
   create_table "sexualities", force: :cascade do |t|

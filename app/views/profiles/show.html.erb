@@ -1,5 +1,5 @@
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
-<% if (@profile.mentor == true && (@profile.mentor_public == true || (user_signed_in? && @user_profile && @user_profile.mentee == true))) || (@profile.mentee == true && @profile.mentee_public == true && user_signed_in? && @user_profile && @user_profile.mentor == true) %>
+<% if (@profile.mentor == true && (@profile.mentor_public == true || (user_signed_in? && @user_profile && @user_profile.mentee == true))) || (@profile.mentee == true && @profile.mentee_public == true && user_signed_in? && @user_profile && @user_profile.mentor == true) || @request_from || @messages_from %>
   <p id="notice"><%= notice %></p>
 
   <p>
@@ -76,6 +76,30 @@
     <strong>Mentee availability:</strong>
     <%= @profile.mentee_availability %>
   </p>
+
+  <%# User can request a mentor if they are a mentee and the profile they are looking at is an available mentor and there are no active requests from that mentee to that mentor %>
+  <% if (@user_profile.mentee == true && @profile.mentor == true && @profile.mentor_availability == true && @requests_from.empty? && @requests_to.empty?) %>
+    <%= form_with url: "/requests", method: :post do |form| %>
+      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+      <%= form.hidden_field :sender_role, value: "mentee" %>
+      <%= form.hidden_field :receiver_role, value: "mentor" %>
+      <%= form.submit "Request as mentor" %>
+    <% end %>
+    <br>
+  <% end %>
+
+
+  <%# User can request a mentee if they are a mentor and the profile they are looking at is an available public mentee and there are no active requests from that mentor to that mentee %>
+  <% if (@user_profile.mentor == true && @profile.mentee == true && @profile.mentee_availability == true && @profile.mentee_public == true && @requests_from.empty? && @requests_to.empty?) %>
+    <%= form_with url: "/requests", method: :post do |form| %>
+      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+      <%= form.hidden_field :sender_role, value: "mentor" %>
+      <%= form.hidden_field :receiver_role, value: "mentee" %>
+      <%= form.submit "Request as mentee" %>
+    <% end %>
+    <br>
+  <% end %>
+
 
   <% if user_signed_in? %>
     <%= form_with url: "/message_create", method: :post do |form| %>

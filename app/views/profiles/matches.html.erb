@@ -1,0 +1,70 @@
+<% if !user_signed_in? %>
+    <h1>You must sign in to see your matches and requests</h1>
+<% else %>
+    <h1>Requests</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>Your requested role</th>
+                <th>Accept</th>
+                <th>Decline</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @user_requests.each do |request| %>
+                <tr>
+                    <%# Finds the name of the person who send the request and links to her/his page %>
+                    <td><%= link_to Profile.find_by(user_id: request.sender_id).name, profile_path(Profile.find_by(user_id: request.sender_id).id) %></td>
+                    <td><%= request.receiver_role %></td>
+                    <td>
+                        <%= form_with url: "/match_create", method: :post do |form| %>
+                            <%= form.hidden_field :receiver_role, value: request.receiver_role %>
+                            <%= form.hidden_field :sender_id, value: request.sender_id %>
+                            <%= form.hidden_field :response, value: "Accepted" %>
+                            <%= form.hidden_field :request_id, value: request.id %>
+                            <%= form.submit "Accept request" %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= form_with url: "/match_create", method: :post do |form| %>
+                            <%= form.hidden_field :response, value: "Declined" %>
+                            <%= form.hidden_field :request_id, value: request.id %>
+                            <%= form.submit "Decline request" %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <h1>Matches</h1><table>
+        <thead>
+            <tr>
+                <th>Mentor</th>
+                <th>Mentee</th>
+                <th>Remove match</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= @user_matches.each do |match| %>
+                <% if match.active == true %>
+                    <tr>
+                        <td><%= link_to Profile.find_by(user_id: match.mentor_id).name, profile_path(Profile.find_by(user_id: match.mentor_id).id) %></td>
+                        <td><%= link_to Profile.find_by(user_id: match.mentee_id).name, profile_path(Profile.find_by(user_id: match.mentee_id).id) %></td>
+                        <td>
+                            <%= form_with url: "/match_destroy", method: :post do |form| %>
+                                <%= form.hidden_field :match_id, value: match.id %>
+                                <%= form.submit "Remove match" %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+<% end %>
