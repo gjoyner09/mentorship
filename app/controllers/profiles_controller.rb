@@ -63,6 +63,23 @@ class ProfilesController < ApplicationController
   def details
   end
 
+  def message_create
+    @message = Message.new
+    @message.sender_id = current_user.id
+    @message.receiver_id = params[:receiver_id].to_i
+    @message.message = params[:message]
+    @message.save
+    redirect_to home_path
+  end
+
+  def messages
+    if user_signed_in?
+      @messages = Message.where(receiver_id: current_user.id)
+    end
+    puts "This user's messages are: "
+    p @messages
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile

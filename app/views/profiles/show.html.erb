@@ -77,11 +77,20 @@
     <%= @profile.mentee_availability %>
   </p>
 
+  <% if user_signed_in? %>
+    <%= form_with url: "/message_create", method: :post do |form| %>
+      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+      <%= form.label :message, "Send a message to #{@profile.name}:" %>
+      <%= form.text_area :message %>
+      <br>
+      <%= form.submit "Send message" %>
+    <% end %>
+  <% end %>
+
   <br>
 
   <%= image_tag @profile.picture if @profile.picture.attached? %>
 
-  <%= link_to 'Edit', edit_profile_path(@profile) %> |
   <%= link_to 'Back', profiles_path %>
 
 <% else %>

@@ -1,0 +1,6 @@
+<% if !user_signed_in? %>
+    <h1>You must sign in to see your messages</h1>
+<% else %>
+    <h1>Messages</h1>
+    <%= @messages %>
+<% end %>
