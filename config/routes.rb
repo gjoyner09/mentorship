@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get "/donate/redirect", to: "pages#redirect", as: "redirect"
   post "/message_create", to: "profiles#message_create", as: "message_create"
   get "/messages", to: "profiles#messages", as: "messages"
+  get "/matches", to: "profiles#matches", as: "matches"
+  post "/requests", to: "profiles#requests", as: "requests"
 end

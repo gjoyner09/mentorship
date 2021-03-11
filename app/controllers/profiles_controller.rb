@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
+    @requests = Requests.where(sender_id: current_user.id).where(receiver_id: @profile.user_id).where(active: true)
   end
 
   # GET /profiles/new
@@ -80,19 +81,38 @@ class ProfilesController < ApplicationController
     p @messages
   end
 
+  def requests
+    @request = Request.new
+    @request.sender_id = current_user.id
+    @request.receiver_id = params[:receiver_id].to_i
+    @request.sender_role = params[:sender_role]
+    @request.receiver_role = params[:receiver_role]
+    @request.save
+    redirect_to home_path
+  end
+
+  def matches
+    if user_signed_in?
+      @requests = Request.where(receiver_id: current_user.id)
+    end
+    puts "This user's requests are: "
+    p @requests
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def profile_params
-      params.require(:profile).permit(:name, :age, :reason_for_interest, :interests, :discussion_topics, :country_id, :gender_id, :sexuality_id, :identity_id, :mentor, :mentee, :mentor_public, :mentee_public, :mentor_availability, :mentee_availability, :picture)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
 
-    def set_profiles
-      @profiles = Profile.all
-    end
+  # Only allow a list of trusted parameters through.
+  def profile_params
+    params.require(:profile).permit(:name, :age, :reason_for_interest, :interests, :discussion_topics, :country_id, :gender_id, :sexuality_id, :identity_id, :mentor, :mentee, :mentor_public, :mentee_public, :mentor_availability, :mentee_availability, :picture)
+  end
+
+  def set_profiles
+    @profiles = Profile.all
+  end
 
 end
