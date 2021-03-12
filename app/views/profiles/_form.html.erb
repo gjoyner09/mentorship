@@ -22,17 +22,17 @@
   </div>
 
   <div class="field">
-    <%= form.label :reason_for_interest %>
+    <%= form.label 'Reason for interest in the program' %>
     <%= form.text_area :reason_for_interest %>
   </div>
 
   <div class="field">
-    <%= form.label :interests %>
+    <%= form.label 'Personal interests' %>
     <%= form.text_area :interests %>
   </div>
 
   <div class="field">
-    <%= form.label :discussion_topics %>
+    <%= form.label 'Topics you would like to or be willing to discuss' %>
     <%= form.text_area :discussion_topics %>
   </div>
 
@@ -57,37 +57,27 @@
   </div>
 
   <div class="field">
-    <%= form.label :mentor %>
+    <%= form.label 'Select if you are interested in being a mentor' %>
     <%= form.check_box :mentor %>
   </div>
 
   <div class="field">
-    <%= form.label :mentee %>
+    <%= form.label 'Select if you are interested in being a mentee' %>
     <%= form.check_box :mentee %>
   </div>
 
   <div class="field">
-    <%= form.label :mentor_public %>
+    <%= form.label 'Select if you want your mentor profile to be visible to the public' %>
     <%= form.check_box :mentor_public %>
   </div>
 
   <div class="field">
-    <%= form.label :mentee_public %>
+    <%= form.label 'Select if you want your mentee profile to be visible to mentors' %>
     <%= form.check_box :mentee_public %>
   </div>
 
   <div class="field">
-    <%= form.label :mentor_availability %>
-    <%= form.check_box :mentor_availability %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mentee_availability %>
-    <%= form.check_box :mentee_availability %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture %>
+    <%= form.label 'Upload a photo of yourself (optional)' %>
     <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
   </div>
 

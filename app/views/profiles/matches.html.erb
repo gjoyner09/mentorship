@@ -1,7 +1,7 @@
 <% if !user_signed_in? %>
     <h1>You must sign in to see your matches and requests</h1>
 <% else %>
-    <h1>Requests</h1>
+    <h1>Received Requests</h1>
     <table>
         <thead>
             <tr>
@@ -52,9 +52,10 @@
             </tr>
         </thead>
         <tbody>
-            <%= @user_matches.each do |match| %>
+            <% @user_matches.each do |match| %>
                 <% if match.active == true %>
                     <tr>
+                        <%# Sets links to the Profile associated with each id %>
                         <td><%= link_to Profile.find_by(user_id: match.mentor_id).name, profile_path(Profile.find_by(user_id: match.mentor_id).id) %></td>
                         <td><%= link_to Profile.find_by(user_id: match.mentee_id).name, profile_path(Profile.find_by(user_id: match.mentee_id).id) %></td>
                         <td>

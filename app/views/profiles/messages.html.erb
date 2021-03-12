@@ -14,7 +14,7 @@
         </thead>
 
         <tbody>
-            <% @messages.each do |message| %>
+            <% @messages.reverse_each do |message| %>
                 <tr>
                     <% if message.sender_id == current_user.id %>
                         <td>Sent</td>
@@ -27,6 +27,7 @@
                     <% end %>
                     <td><%= message.message %></td>
                     <td><%= message.created_at %></td>
+                    <%# links to the appropriate Profile page based on id %>
                     <% if message.sender_id == current_user.id %>
                         <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.receiver_id).id) %></td>
                     <% else %>

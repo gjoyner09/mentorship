@@ -6,8 +6,8 @@ class PagesController < ApplicationController
   def donate
   end
 
+  # Actions the Stripe donation and sends to a redirect page
   def submit_donation
-    puts params
     amount = params[:amount].to_i*100
     email = current_user.email if user_signed_in?
     id = current_user.id if user_signed_in?
@@ -31,11 +31,12 @@ class PagesController < ApplicationController
     redirect_to redirect_path(session: session.id)
   end
 
+  # Redirects to Stripe (external)
   def redirect
-    puts "Params in controller: #{params}"
     @session = params[:session]
   end
 
+  # Shows user that the donation has been a success
   def success
     @amount = params[:donationAmount]
   end
