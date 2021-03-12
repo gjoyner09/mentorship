@@ -1,13 +1,12 @@
-<div class="px-4">
+<div class="px-4 mt-4">
 
 <h1>Mentors</h1>
 <% if !(user_signed_in?) || !(@user_profile) || @user_profile.mentee == false %>
   <div class="alert alert-warning" role="alert">You are seeing a subset of mentors that have public profiles. For the full list of available mentors, please sign up as a mentee.</div>
 <% end %>
 
-<div class="container-lg">
 <table class = "table table-margins">
-  <thead class="thead-light">
+  <thead>
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Age</th>
@@ -42,10 +41,5 @@
     <% end %>
   </tbody>
 </table>
-</div>
-
-<br>
-
-<%= link_to 'New Profile', new_profile_path %>
 
 </div>

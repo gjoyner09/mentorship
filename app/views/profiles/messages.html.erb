@@ -1,9 +1,12 @@
-<div class="px-4">
+<div class="px-4 mt-4">
 
 <% if !user_signed_in? %>
     <div class="alert alert-danger" role="alert">You must sign in to see your messages</div>
 <% else %>
     <h1>Messages</h1>
+    <% if @messages.empty? %>
+        <div class="alert alert-primary" role="alert">You have not received any messages</div>
+    <% else %>
     <table class="table">
         <thead>
             <tr>
@@ -39,6 +42,7 @@
             <% end %>
         </tbody>
     </table>
+    <% end %>
 <% end %>
 
 </div>

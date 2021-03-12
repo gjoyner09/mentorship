@@ -1,9 +1,12 @@
-<div class="px-4">
+<div class="px-4 mt-4">
 
 <% if !user_signed_in? %>
     <div class="alert alert-danger" role="alert">You must sign in to see your matches and requests</div>
 <% else %>
     <h1>Received Requests</h1>
+    <% if @user_requests.empty? %>
+        <div class="alert alert-primary" role="alert">You have not received any active requests</div>
+    <% else %>
     <table class="table">
         <thead>
             <tr>
@@ -40,11 +43,15 @@
             <% end %>
         </tbody>
     </table>
+    <% end %>
 
     <br>
     <br>
 
     <h1>Matches</h1>
+    <% if @user_matches.empty? %>
+        <div class="alert alert-primary" role="alert">You do not have any active mentor/mentee matches</div>
+    <% else %>
     <table class = "table">
         <thead>
             <tr>
@@ -71,6 +78,7 @@
             <% end %>
         </tbody>
     </table>
+    <% end %>
 <% end %>
 
 </div>

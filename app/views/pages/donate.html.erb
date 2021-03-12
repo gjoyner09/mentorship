@@ -1,19 +1,21 @@
-<div class="px-4">
+<div class="px-4 mt-4">
 
 <h1>Donate</h1>
 
 <p class = "lead">We are a nonprofit organisation that relies on public donations. Please donate however much you can!</p>
+
+<br>
 
 <%= form_with url:"/donate", method: :post do |form| %>
 
     <div class="field">
         <%= form.label "Amount ($AUD)" %>
         <%= form.number_field :amount %>
-    </div>
-
-    <div class="actions">
         <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
+
+    <br>
+
 
 <% end %>
 

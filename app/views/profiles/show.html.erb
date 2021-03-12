@@ -1,4 +1,4 @@
-<div class="px-4">
+<div class="px-4 mt-4">
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
 <% if (@profile.mentor == true && (@profile.mentor_public == true || (user_signed_in? && @user_profile && @user_profile.mentee == true))) || (@profile.mentee == true && @profile.mentee_public == true && user_signed_in? && @user_profile && @user_profile.mentor == true) || @request_from || @messages_from %>
   <p id="notice"><%= notice %></p>
