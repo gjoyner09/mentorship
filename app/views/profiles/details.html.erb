@@ -69,16 +69,6 @@
     <%= @user_profile.mentee_public %>
   </p>
 
-  <p>
-    <strong>Mentor availability:</strong>
-    <%= @user_profile.mentor_availability %>
-  </p>
-
-  <p>
-    <strong>Mentee availability:</strong>
-    <%= @user_profile.mentee_availability %>
-  </p>
-
   <br>
 
   <%= image_tag @user_profile.picture if @user_profile.picture.attached? %>
