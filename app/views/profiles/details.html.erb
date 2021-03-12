@@ -15,38 +15,38 @@
   </p>
 
   <p>
-    <strong>Reason for interest:</strong>
+    <strong>Reason for interest in program:</strong>
     <%= @user_profile.reason_for_interest %>
   </p>
 
   <p>
-    <strong>Interests:</strong>
+    <strong>Personal interests:</strong>
     <%= @user_profile.interests %>
   </p>
 
   <p>
-    <strong>Discussion topics:</strong>
+    <strong>Discussion specialities:</strong>
     <%= @user_profile.discussion_topics %>
   </p>
 
   <p>
     <strong>Country:</strong>
-    <%= @user_profile.country_id %>
+    <%= Country.find(@user_profile.country_id).country_name %>
   </p>
 
   <p>
     <strong>Gender:</strong>
-    <%= @user_profile.gender_id %>
+    <%= Gender.find(@user_profile.gender_id).gender_name %>
   </p>
 
   <p>
     <strong>Sexuality:</strong>
-    <%= @user_profile.sexuality_id %>
+    <%= Sexuality.find(@user_profile.sexuality_id).sexuality_name %>
   </p>
 
   <p>
     <strong>Identity:</strong>
-    <%= @user_profile.identity_id %>
+    <%= Identity.find(@user_profile.identity_id).identity_name %>
   </p>
 
   <p>

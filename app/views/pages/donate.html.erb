@@ -1,14 +1,16 @@
 <h1>Donate</h1>
 
+<h3>We are a nonprofit organisation that relies on public donations. Please donate however much you can!</h3>
+
 <%= form_with url:"/donate", method: :post do |form| %>
 
     <div class="field">
-        <%= form.label :amount %>
+        <%= form.label "Amount ($AUD)" %>
         <%= form.number_field :amount %>
     </div>
 
     <div class="actions">
-        <%= form.submit %>
+        <%= form.submit "Submit" %>
     </div>
 
 <% end %>

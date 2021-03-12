@@ -31,6 +31,7 @@
             <td><%= profile.reason_for_interest %></td>
             <td><%= profile.interests %></td>
             <td><%= profile.discussion_topics %></td>
+            <%# Looks up the values associated with each id for country, gender, sexuality, identity %>
             <td><%= Country.find_by(id: profile.country_id).country_name %></td>
             <td><%= Gender.find_by(id: profile.gender_id).gender_name %></td>
             <td><%= Sexuality.find_by(id: profile.sexuality_id).sexuality_name %></td>
