@@ -1,12 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="px-4">
 
 <% if !(user_signed_in?) || !@user_profile || @user_profile.mentor == false %>
-    <h1>This page is only available to those who have signed up as a mentor</h1>
+    <div class="alert alert-danger" role="alert">This page is only available to those who have signed up as a mentor</h1>
 <% else %>
 
     <h1>Profiles of Available Mentees</h1>
 
-    <table>
+    <table class="table">
     <thead>
         <tr>
         <th>Name</th>
@@ -36,7 +36,7 @@
             <td><%= Gender.find_by(id: profile.gender_id).gender_name %></td>
             <td><%= Sexuality.find_by(id: profile.sexuality_id).sexuality_name %></td>
             <td><%= Identity.find_by(id: profile.identity_id).identity_name %></td>
-            <td><%= link_to 'Show', profile %></td>
+            <td><%= link_to 'View', profile %></td>
             </tr>
         <% end %>
         <% end %>
@@ -48,3 +48,5 @@
     <%= link_to 'New Profile', new_profile_path %>
 
 <% end %>
+
+</div>

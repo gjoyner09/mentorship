@@ -1,7 +1,9 @@
+<div class="px-4">
+
 <% if !user_signed_in? %>
-    <h1>You must sign in first</h1>
+    <div class="alert alert-danger" role="alert">You must sign in first</div>
 <% elsif @user_profile %>
-    <h1>You've already created a profile. To make changes, click My Profile.</h1>
+    <div class="alert alert-warning" role="alert">You've already created a profile. To make changes, click My Profile.</div>
 <% else %>
     <h1>New Profile</h1>
 
@@ -9,3 +11,5 @@
 
     <%= link_to 'Back', profiles_path %>
 <% end %>
+
+</div>

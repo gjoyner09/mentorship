@@ -1,8 +1,10 @@
+<div class="px-4">
+
 <% if !user_signed_in? %>
-    <h1>You must sign in to see your messages</h1>
+    <div class="alert alert-danger" role="alert">You must sign in to see your messages</div>
 <% else %>
     <h1>Messages</h1>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Type</th>
@@ -38,3 +40,5 @@
         </tbody>
     </table>
 <% end %>
+
+</div>

@@ -1,6 +1,8 @@
+<div class="px-4">
+
 <h1>Donate</h1>
 
-<h3>We are a nonprofit organisation that relies on public donations. Please donate however much you can!</h3>
+<p class = "lead">We are a nonprofit organisation that relies on public donations. Please donate however much you can!</p>
 
 <%= form_with url:"/donate", method: :post do |form| %>
 
@@ -10,7 +12,9 @@
     </div>
 
     <div class="actions">
-        <%= form.submit "Submit" %>
+        <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
 
 <% end %>
+
+</div>

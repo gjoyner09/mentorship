@@ -1,3 +1,5 @@
+<div class="px-4">
+
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the user_profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
 <% if !@user_profile %>
     <h1>You must create a mentor/mentee profile to view this page</h1>
@@ -81,3 +83,5 @@
 <br>
 
 <%= link_to 'Edit login details', edit_user_registration_path %>
+
+</div>

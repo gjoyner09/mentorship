@@ -1,5 +1,7 @@
+<div class="px-4">
+
 <% if !(user_signed_in?) || @profile.user_id != current_user.id %>
-    <h1>You can only edit your own profile</h1>
+    <div class="alert alert-danger" role="alert">You can only edit your own profile</div>
 <% else %>
     <h1>Editing Profile</h1>
 
@@ -9,3 +11,5 @@
     <%= link_to 'Show', @profile %> |
     <%= link_to 'Back', profiles_path %>
 <% end %>
+
+</div>
