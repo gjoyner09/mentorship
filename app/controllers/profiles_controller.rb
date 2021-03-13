@@ -10,11 +10,13 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
-    # Checks to see if there are any requests between the user and the profile (so that they can't send multiple requests)
-    @requests_to = Request.where(sender_id: current_user.id).where(receiver_id: @profile.user_id)
-    @requests_from = Request.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
-    # Checks if the profile has sent a message to the user (which overrides private profiles)
-    @messages_from = Message.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+    if user_signed_in?
+      # Checks to see if there are any requests between the user and the profile (so that they can't send multiple requests)
+      @requests_to = Request.where(sender_id: current_user.id).where(receiver_id: @profile.user_id)
+      @requests_from = Request.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+      # Checks if the profile has sent a message to the user (which overrides private profiles)
+      @messages_from = Message.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+    end
   end
 
   # GET /profiles/new

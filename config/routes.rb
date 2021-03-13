@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post "/requests", to: "profiles#requests", as: "requests"
   post "/match_create", to: "profiles#match_create", as: "match_create"
   post "/match_destroy", to: "profiles#match_destroy", as: "match_destroy"
+  get "/about", to: "pages#about", as: "about"
 end

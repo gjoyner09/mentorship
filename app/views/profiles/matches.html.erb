@@ -18,7 +18,7 @@
         </thead>
 
         <tbody>
-            <% @user_requests.each do |request| %>
+            <% @user_requests.reverse_each do |request| %>
                 <tr>
                     <%# Finds the name of the person who send the request and links to her/his page %>
                     <td><%= link_to Profile.find_by(user_id: request.sender_id).name, profile_path(Profile.find_by(user_id: request.sender_id).id) %></td>
@@ -61,7 +61,7 @@
             </tr>
         </thead>
         <tbody>
-            <% @user_matches.each do |match| %>
+            <% @user_matches.reverse_each do |match| %>
                 <% if match.active == true %>
                     <tr>
                         <%# Sets links to the Profile associated with each id %>
