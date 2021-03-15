@@ -35,7 +35,7 @@
           <td><%= Gender.find_by(id: profile.gender_id).gender_name %></td>
           <td><%= Sexuality.find_by(id: profile.sexuality_id).sexuality_name %></td>
           <td><%= Identity.find_by(id: profile.identity_id).identity_name %></td>
-          <td><%= link_to 'View', profile %></td>
+          <td><%= link_to 'View', profile, class: "btn btn-primary" %></td>
         </tr>
       <% end %>
     <% end %>

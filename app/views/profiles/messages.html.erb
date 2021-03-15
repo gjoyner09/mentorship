@@ -34,9 +34,9 @@
                     <td><%= message.created_at %></td>
                     <%# links to the appropriate Profile page based on id %>
                     <% if message.sender_id == current_user.id %>
-                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.receiver_id).id) %></td>
+                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.receiver_id).id), class: "btn btn-primary" %></td>
                     <% else %>
-                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.sender_id).id) %></td>
+                        <td><%= link_to 'Respond', profile_path(Profile.find_by(user_id: message.sender_id).id), class: "btn btn-primary" %></td>
                     <% end %>
                 </tr>
             <% end %>

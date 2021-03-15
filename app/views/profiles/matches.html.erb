@@ -29,14 +29,14 @@
                             <%= form.hidden_field :sender_id, value: request.sender_id %>
                             <%= form.hidden_field :response, value: "Accepted" %>
                             <%= form.hidden_field :request_id, value: request.id %>
-                            <%= form.submit "Accept request" %>
+                            <%= form.submit "Accept request", class: "btn btn-primary" %>
                         <% end %>
                     </td>
                     <td>
                         <%= form_with url: "/match_create", method: :post do |form| %>
                             <%= form.hidden_field :response, value: "Declined" %>
                             <%= form.hidden_field :request_id, value: request.id %>
-                            <%= form.submit "Decline request" %>
+                            <%= form.submit "Decline request", class: "btn btn-primary" %>
                         <% end %>
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
                         <td>
                             <%= form_with url: "/match_destroy", method: :post do |form| %>
                                 <%= form.hidden_field :match_id, value: match.id %>
-                                <%= form.submit "Remove match" %>
+                                <%= form.submit "Remove match", class: "btn btn-primary" %>
                             <% end %>
                         </td>
                     </tr>
