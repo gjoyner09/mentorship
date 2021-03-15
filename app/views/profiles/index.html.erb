@@ -3,6 +3,8 @@
 <h1>Mentors</h1>
 <% if !(user_signed_in?) || !(@user_profile) || @user_profile.mentee == false %>
   <div class="alert alert-warning" role="alert">You are seeing a subset of mentors that have public profiles. For the full list of available mentors, please sign up as a mentee.</div>
+<% elsif (@user_profile.mentee == true && (@user_profile.mentee_public == false || @user_profile.mentee_availability == false)) %>
+  <div class="alert alert-warning" role="alert">You can see these mentors, but they cannot see you (because you have a private profile and/or are not listed as available as a mentee). If you message or request them, they will then be able to see your profile.</div>
 <% end %>
 
 <table class = "table table-margins">

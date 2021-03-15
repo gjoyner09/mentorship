@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
       @requests_from = Request.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
       # Checks if the profile has sent a message to the user (which overrides private profiles)
       @messages_from = Message.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+      @matches_with = Match.where(mentor_id: current_user.id).where(mentee_id: @profile.id).where(active: true).or(Match.where(mentor_id: @profile.id).where(mentee_id: current_user.id).where(active: true))
     end
   end
 

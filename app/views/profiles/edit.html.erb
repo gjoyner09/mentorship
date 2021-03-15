@@ -1,15 +1,15 @@
 <div class="px-4 mt-4">
-
-<% if !(user_signed_in?) || @profile.user_id != current_user.id %>
-    <div class="alert alert-danger" role="alert">You can only edit your own profile</div>
-<% else %>
-    <h1>Editing Profile</h1>
-
-    <%= render 'form', profile: @profile %>
-
-    <%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to 'Show', @profile %> |
-    <%= link_to 'Back', profiles_path %>
-<% end %>
-
+    <% if !(user_signed_in?) || @profile.user_id != current_user.id %>
+        <div class="alert alert-danger" role="alert">You can only edit your own profile</div>
+    <% else %>
+        <h1>Editing Profile</h1>
+        <br>
+        <%= render 'edit-form', profile: @profile %>
+        <br>
+        <div class="container-lg">
+            <%= link_to 'Delete profile', @profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+            <br>
+            <br>
+        </div>
+    <% end %>
 </div>
