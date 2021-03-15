@@ -12,11 +12,9 @@ class PagesController < ApplicationController
   # Actions the Stripe donation and sends to a redirect page
   def submit_donation
     amount = params[:amount].to_i*100
-    email = current_user.email if user_signed_in?
     id = current_user.id if user_signed_in?
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      customer_email: email,
       line_items: [{
         name: "Donation",
         amount: amount,

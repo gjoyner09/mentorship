@@ -9,9 +9,9 @@ class Profile < ApplicationRecord
   validates :age, numericality: { only_integer: true }
   validates :age, numericality: { greater_than_or_equal_to: 18 }
   validates :age, numericality: { less_than_or_equal_to: 100 }
-  validates :reason_for_interest, length: { in: 10..100 }
-  validates :interests, length: { in: 10..100 }
-  validates :discussion_topics, length: { in: 10..100 }
+  validates :reason_for_interest, length: { in: 10..150 }
+  validates :interests, length: { in: 10..150 }
+  validates :discussion_topics, length: { in: 10..150 }
 
   before_save
   
