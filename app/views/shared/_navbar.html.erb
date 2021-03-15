@@ -1,18 +1,52 @@
-<nav>
-    <%= link_to "Home", home_path %>
-    <%= link_to "Donate", donate_path %>
-    <%= link_to "Mentors", profiles_path %>
-    <%= link_to "Mentees", mentees_path %>
-    <% if user_signed_in? %>
-        <%= link_to "Matches & Requests", matches_path %>
-        <%= link_to "Messages", messages_path %>
-        <%= link_to "My Profile", details_path %>
-        <% if !@user_profile %>
-            <%= link_to "Register as Mentor/Mentee", new_profile_path %>
+<nav class="navbar navbar-expand-lg navbar-light px-2", style="background-color:#C2BCBC">
+  <%= link_to image_tag("navbar-logo.png", class: "h-100 navbar-logo px-2"), "/"%>
+  <%# <a class="navbar-brand" href='/'><img src="app/assets/images/navbar-logo.png" height: 100%></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href='/about'>About<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href='/donate'>Donate<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href='/profiles'>Mentors<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href='/mentees'>Mentees<span class="sr-only"></span></a>
+      </li>
+      <% if user_signed_in? %>
+        <% if @user_profile %>
+            <li class="nav-item active">
+                <a class="nav-link" href='/matches'>Matches & Requests<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href='/messages'>Messages<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href='/details'>My Profile<span class="sr-only"></span></a>
+            </li>
+        <% else %>
+            <li class="nav-item active">
+                <a class="nav-link" href='/profiles/new'>Register as Mentor/Mentee<span class="sr-only"></span></a>
+            </li>
         <% end %>
-        <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
-    <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
+        <li class="nav-item active">
+            <%= link_to "Sign Out", destroy_user_session_path, class: "nav-link", method: "delete" %>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+            <a class="nav-link" href='/users/sign_in'>Sign In<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href='/users/sign_up'>Sign Up<span class="sr-only"></span></a>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
 </nav>

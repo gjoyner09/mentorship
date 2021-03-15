@@ -1,112 +1,115 @@
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
 <% if (@profile.mentor == true && (@profile.mentor_public == true || (user_signed_in? && @user_profile && @user_profile.mentee == true))) || (@profile.mentee == true && @profile.mentee_public == true && user_signed_in? && @user_profile && @user_profile.mentor == true) || @request_from || @messages_from %>
-  <p id="notice"><%= notice %></p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= @profile.name %>
-  </p>
-
-  <p>
-    <strong>Age:</strong>
-    <%= @profile.age %>
-  </p>
-
-  <p>
-    <strong>Reason for interest in the program:</strong>
-    <%= @profile.reason_for_interest %>
-  </p>
-
-  <p>
-    <strong>Personal interests:</strong>
-    <%= @profile.interests %>
-  </p>
-
-  <p>
-    <strong>Discussion specialities:</strong>
-    <%= @profile.discussion_topics %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= Country.find(@profile.country_id).country_name %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= Gender.find(@profile.gender_id).gender_name %>
-  </p>
-
-  <p>
-    <strong>Sexuality:</strong>
-    <%= Sexuality.find(@profile.sexuality_id).sexuality_name %>
-  </p>
-
-  <p>
-    <strong>Identity:</strong>
-    <%= Identity.find(@profile.identity_id).identity_name %>
-  </p>
-
-  <p>
-    <strong>Mentor:</strong>
-    <%= @profile.mentor %>
-  </p>
-
-  <p>
-    <strong>Mentee:</strong>
-    <%= @profile.mentee %>
-  </p>
-
-  <p>
-    <strong>Mentor availability:</strong>
-    <%= @profile.mentor_availability %>
-  </p>
-
-  <p>
-    <strong>Mentee availability:</strong>
-    <%= @profile.mentee_availability %>
-  </p>
-
-  <%# User can request a mentor if they are a mentee and the profile they are looking at is an available mentor and there are no active requests from that mentee to that mentor %>
-  <% if (@user_profile.mentee == true && @profile.mentor == true && @profile.mentor_availability == true && @requests_from.empty? && @requests_to.empty?) %>
-    <%= form_with url: "/requests", method: :post do |form| %>
-      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
-      <%= form.hidden_field :sender_role, value: "mentee" %>
-      <%= form.hidden_field :receiver_role, value: "mentor" %>
-      <%= form.submit "Request as mentor" %>
-    <% end %>
+  <div class="px-4 mt-4 container">
+    <h1>Profile: <%=@profile.name%></h1>
     <br>
-  <% end %>
+    <div class="row">
+      <%# Left half of screen: profile info %>
+      <div class="col">
+        <div class = "card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Name:</strong>
+              <%= @profile.name %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Age:</strong>
+              <%= @profile.age %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Reason for interest:</strong>
+              <%= @profile.reason_for_interest %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Interests:</strong>
+              <%= @profile.interests %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Discussion topics:</strong>
+              <%= @profile.discussion_topics %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Country:</strong>
+              <%# Finds the country with the correct country id and returns the country name %>
+              <%= Country.find(@profile.country_id).country_name %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Gender:</strong>
+              <%# Finds the gender with the correct gender id and returns the gender name %>
+              <%= Gender.find(@profile.gender_id).gender_name %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Sexuality:</strong>
+              <%# Finds the sexuality with the correct sexuality id and returns the sexuality name %>
+              <%= Sexuality.find(@profile.sexuality_id).sexuality_name %>
+            </li>
+
+            <li class="list-group-item">
+              <strong>Identity:</strong>
+              <%# Finds the identity with the correct identity id and returns the identity name %>
+              <%= Identity.find(@profile.identity_id).identity_name %>
+            </li>
+          </ul>
+        </div>
+
+        <br>
+
+        <%# User can request a mentor if they are a mentee and the profile they are looking at is an available mentor and there are no active requests from that mentee to that mentor %>
+        <% if (user_signed_in? && @profile != @user_profile && @user_profile.mentee == true && @profile.mentor == true && @profile.mentor_availability == true && @requests_from.empty? && @requests_to.empty?) %>
+          <%= form_with url: "/requests", method: :post do |form| %>
+            <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+            <%= form.hidden_field :sender_role, value: "mentee" %>
+            <%= form.hidden_field :receiver_role, value: "mentor" %>
+            <%= form.submit "Request as mentor", class: "btn btn-primary" %>
+          <% end %>
+          <br>
+        <% end %>
 
 
-  <%# User can request a mentee if they are a mentor and the profile they are looking at is an available public mentee and there are no active requests from that mentor to that mentee %>
-  <% if (@user_profile.mentor == true && @profile.mentee == true && @profile.mentee_availability == true && @profile.mentee_public == true && @requests_from.empty? && @requests_to.empty?) %>
-    <%= form_with url: "/requests", method: :post do |form| %>
-      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
-      <%= form.hidden_field :sender_role, value: "mentor" %>
-      <%= form.hidden_field :receiver_role, value: "mentee" %>
-      <%= form.submit "Request as mentee" %>
-    <% end %>
-    <br>
-  <% end %>
+        <%# User can request a mentee if they are a mentor and the profile they are looking at is an available public mentee and there are no active requests from that mentor to that mentee %>
+        <% if (user_signed_in? && @profile != @user_profile && @user_profile && @user_profile.mentor == true && @profile.mentee == true && @profile.mentee_availability == true && @profile.mentee_public == true && @requests_from.empty? && @requests_to.empty?) %>
+          <%= form_with url: "/requests", method: :post do |form| %>
+            <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+            <%= form.hidden_field :sender_role, value: "mentor" %>
+            <%= form.hidden_field :receiver_role, value: "mentee" %>
+            <%= form.submit "Request as mentee", class: "btn btn-primary" %>
+          <% end %>
+          <br>
+        <% end %>
 
-<%# Allows user to send message if signed in and not looking at their own page %>
-  <% if user_signed_in? && current_user != User.find(@profile.id) %>
-    <%= form_with url: "/message_create", method: :post do |form| %>
-      <%= form.hidden_field :receiver_id, value: @profile.user_id %>
-      <%= form.label :message, "Send a message to #{@profile.name}:" %>
-      <%= form.text_area :message %>
-      <br>
-      <%= form.submit "Send message" %>
-    <% end %>
-  <% end %>
-
-  <br>
-
-  <%= image_tag @profile.picture if @profile.picture.attached? %>
-
-  <%= link_to 'Back', profiles_path %>
+        <%# Only shows the message field if the user is signed in and is looking at someone else's profile %>
+        <% if user_signed_in? && @profile != @user_profile %>
+          <%= form_with url: "/message_create", method: :post do |form| %>
+            <%= form.hidden_field :receiver_id, value: @profile.user_id %>
+            <div class="field form-group">
+              <%= form.label :message, "Send a message to #{@profile.name}:" %>
+              <br>
+              <%= form.text_area :message, class: "form-control" %>
+            </div>
+            <%= form.submit "Send message", class: "btn btn-primary"%>
+          <% end %>
+          <br>
+        <% end %>
+      </div>
+      <%# Right half of the screen: image (or blank) %>
+      <div class="col">
+        <% if @profile.picture.attached? %>
+          <%= image_tag @profile.picture, class:"show-img" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 <% else %>
-  <h1>This profile is private</h1>
+<div class="px-4 mt-4 container">
+  <div class="alert alert-danger" role="alert">This profile is private</div>
+</div>
 <% end %>
+

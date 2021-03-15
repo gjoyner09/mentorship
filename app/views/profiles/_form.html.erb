@@ -1,3 +1,4 @@
+<div class="container-lg">
 <%= form_with(model: profile) do |form| %>
   <% if profile.errors.any? %>
     <div id="error_explanation">
@@ -11,77 +12,92 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :age %>
-    <%= form.number_field :age %>
+    <%= form.number_field :age, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Reason for interest in the program' %>
-    <%= form.text_area :reason_for_interest %>
+  <div class="field form-group">
+    <%= form.label 'Reason for interest in the program:' %>
+    <br>
+    <%= form.text_area :reason_for_interest, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Personal interests' %>
-    <%= form.text_area :interests %>
+  <div class="field form-group">
+    <%= form.label 'Personal interests:' %>
+    <br>
+    <%= form.text_area :interests, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Topics you would like to or be willing to discuss' %>
-    <%= form.text_area :discussion_topics %>
+  <div class="field form-group">
+    <%= form.label 'Topics you would like to or be willing to discuss:' %>
+    <br>
+    <%= form.text_area :discussion_topics, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :country_id %>
-    <%= form.collection_select :country_id, Country.order(:country_name), :id, :country_name %>
+  <div class="field form-group">
+    <%= form.label :country_id, for: "exampleFormControlSelect1" %>
+    <br>
+    <%= form.collection_select :country_id, Country.order(:country_name), :id, :country_name, class: "form-control", id: "exampleFormControlSelect1" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :gender_id %>
+    <br>
     <%= form.collection_select :gender_id, Gender.order(:id), :id, :gender_name %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :sexuality_id %>
+    <br>
     <%= form.collection_select :sexuality_id, Sexuality.order(:id), :id, :sexuality_name %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :identity_id %>
+    <br>
     <%= form.collection_select :identity_id, Identity.order(:id), :id, :identity_name %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Select if you are interested in being a mentor' %>
+  <br>
+
+  <div class="field form-group">
     <%= form.check_box :mentor %>
+    <%= form.label 'I am interested in being a mentor' %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Select if you are interested in being a mentee' %>
+  <div class="field form-group">
     <%= form.check_box :mentee %>
+    <%= form.label 'I am interested in being a mentee' %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Select if you want your mentor profile to be visible to the public' %>
+  <div class="field form-group">
     <%= form.check_box :mentor_public %>
+    <%= form.label 'I want my mentor profile to be visible to the public' %>
   </div>
 
-  <div class="field">
-    <%= form.label 'Select if you want your mentee profile to be visible to mentors' %>
+  <div class="field form-group">
     <%= form.check_box :mentee_public %>
+    <%= form.label 'I want my mentee profile to be visible to mentors' %>
   </div>
 
-  <div class="field">
+  <br>
+
+  <div class="field form-group">
     <%= form.label 'Upload a photo of yourself (optional)' %>
+    <br>
     <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
   </div>
 
+  <br>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>

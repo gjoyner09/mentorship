@@ -10,11 +10,13 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
-    # Checks to see if there are any requests between the user and the profile (so that they can't send multiple requests)
-    @requests_to = Request.where(sender_id: current_user.id).where(receiver_id: @profile.user_id)
-    @requests_from = Request.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
-    # Checks if the profile has sent a message to the user (which overrides private profiles)
-    @messages_from = Message.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+    if user_signed_in?
+      # Checks to see if there are any requests between the user and the profile (so that they can't send multiple requests)
+      @requests_to = Request.where(sender_id: current_user.id).where(receiver_id: @profile.user_id)
+      @requests_from = Request.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+      # Checks if the profile has sent a message to the user (which overrides private profiles)
+      @messages_from = Message.where(receiver_id: current_user.id).where(sender_id: @profile.user_id)
+    end
   end
 
   # GET /profiles/new
@@ -57,7 +59,7 @@ class ProfilesController < ApplicationController
     # Updates the profile details
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: "Profile was successfully updated." }
+        format.html { redirect_to details_path, notice: "Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit, status: :unprocessable_entity }

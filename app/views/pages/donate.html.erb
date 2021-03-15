@@ -1,16 +1,26 @@
-<h1>Donate</h1>
-
-<h3>We are a nonprofit organisation that relies on public donations. Please donate however much you can!</h3>
-
-<%= form_with url:"/donate", method: :post do |form| %>
-
-    <div class="field">
-        <%= form.label "Amount ($AUD)" %>
-        <%= form.number_field :amount %>
+<div class="px-4 mt-4">
+    <h1>Donate</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <br>
+            <br>
+            <br>
+                <%= form_with url:"/donate", method: :post do |form| %>
+                    <div class="field">
+                        <%= form.label "Amount ($AUD)", class:"lead" %>
+                        <%= form.number_field :amount %>
+                        <%= form.submit "Submit", class: "btn btn-primary" %>
+                    </div>
+                    <br>
+                <% end %>
+                <br>
+                <p class = "lead">We are a nonprofit organisation that relies on public donations. Please donate however much you can!</p>
+            </div>
+            <div class="col">
+                <%= image_tag asset_path("donate-img.jpg"), class: "about-image" %>
+            </div>
+        </div>
     </div>
 
-    <div class="actions">
-        <%= form.submit "Submit" %>
-    </div>
-
-<% end %>
+</div>

@@ -1,93 +1,116 @@
+<div class="px-4 mt-4">
+
 <%# Rules for viewing the page: if mentor, can only be seen by him/herself or mentees, unless the user_profile is public. If mentee, can only be seen by him/herself or mentor if the profile is public. %>
 <% if !@user_profile %>
     <h1>You must create a mentor/mentee profile to view this page</h1>
 <% else %>
-  <p id="notice"><%= notice %></p>
+  <div class="px-4 mt-4 container">
+    <h1>Your Profile</h1>
+    <br>
+    <div class="row">
+      <%# Left half of screen: profile info %>
+      <div class="col">
+        <div class = "card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Name:</strong>
+              <%= @user_profile.name %>
+            </li>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @user_profile.name %>
-  </p>
+            <li class="list-group-item">
+              <strong>Age:</strong>
+              <%= @user_profile.age %>
+            </li>
 
-  <p>
-    <strong>Age:</strong>
-    <%= @user_profile.age %>
-  </p>
+            <li class="list-group-item">
+              <strong>Reason for interest:</strong>
+              <%= @user_profile.reason_for_interest %>
+            </li>
 
-  <p>
-    <strong>Reason for interest in program:</strong>
-    <%= @user_profile.reason_for_interest %>
-  </p>
+            <li class="list-group-item">
+              <strong>Interests:</strong>
+              <%= @user_profile.interests %>
+            </li>
 
-  <p>
-    <strong>Personal interests:</strong>
-    <%= @user_profile.interests %>
-  </p>
+            <li class="list-group-item">
+              <strong>Discussion topics:</strong>
+              <%= @user_profile.discussion_topics %>
+            </li>
 
-  <p>
-    <strong>Discussion specialities:</strong>
-    <%= @user_profile.discussion_topics %>
-  </p>
+            <li class="list-group-item">
+              <strong>Country:</strong>
+              <%# Finds the country with the correct country id and returns the country name %>
+              <%= Country.find(@user_profile.country_id).country_name %>
+            </li>
 
-  <p>
-    <strong>Country:</strong>
-    <%= Country.find(@user_profile.country_id).country_name %>
-  </p>
+            <li class="list-group-item">
+              <strong>Gender:</strong>
+              <%# Finds the gender with the correct gender id and returns the gender name %>
+              <%= Gender.find(@user_profile.gender_id).gender_name %>
+            </li>
 
-  <p>
-    <strong>Gender:</strong>
-    <%= Gender.find(@user_profile.gender_id).gender_name %>
-  </p>
+            <li class="list-group-item">
+              <strong>Sexuality:</strong>
+              <%# Finds the sexuality with the correct sexuality id and returns the sexuality name %>
+              <%= Sexuality.find(@user_profile.sexuality_id).sexuality_name %>
+            </li>
 
-  <p>
-    <strong>Sexuality:</strong>
-    <%= Sexuality.find(@user_profile.sexuality_id).sexuality_name %>
-  </p>
+            <li class="list-group-item">
+              <strong>Identity:</strong>
+              <%# Finds the identity with the correct identity id and returns the identity name %>
+              <%= Identity.find(@user_profile.identity_id).identity_name %>
+            </li>
 
-  <p>
-    <strong>Identity:</strong>
-    <%= Identity.find(@user_profile.identity_id).identity_name %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentor:</strong>
+              <%= @user_profile.mentor %>
+            </li>
 
-  <p>
-    <strong>Mentor:</strong>
-    <%= @user_profile.mentor %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentee:</strong>
+              <%= @user_profile.mentee %>
+            </li>
 
-  <p>
-    <strong>Mentee:</strong>
-    <%= @user_profile.mentee %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentor profile visible to public:</strong>
+              <%= @user_profile.mentor_public %>
+            </li>
 
-  <p>
-    <strong>Mentor public:</strong>
-    <%= @user_profile.mentor_public %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentee profile visible to all mentors:</strong>
+              <%= @user_profile.mentee_public %>
+            </li>
 
-  <p>
-    <strong>Mentee public:</strong>
-    <%= @user_profile.mentee_public %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentor availability:</strong>
+              <%= @user_profile.mentor_availability %>
+            </li>
 
-  <p>
-    <strong>Mentor availability:</strong>
-    <%= @user_profile.mentor_availability %>
-  </p>
+            <li class="list-group-item">
+              <strong>Mentee availability:</strong>
+              <%= @user_profile.mentee_availability %>
+            </li>
 
-  <p>
-    <strong>Mentee availability:</strong>
-    <%= @user_profile.mentee_availability %>
-  </p>
+          </ul>
+        </div>
 
-  <br>
+        <br>
 
-  <%= image_tag @user_profile.picture if @user_profile.picture.attached? %>
+      </div>
+      <%# Right half of the screen: image (or blank) %>
+      <div class="col">
+        <% if @user_profile.picture.attached? %>
+          <%= image_tag @user_profile.picture, class:"show-img" %>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to 'Edit profile', edit_profile_path(@user_profile), class: "btn btn-primary" %>
+    <%= link_to 'Edit login details', edit_user_registration_path, class: "btn btn-primary" %>
+  </div>
 
-  <%= link_to 'Edit', edit_profile_path(@user_profile) %> |
-  <%= link_to 'Back', profiles_path %>
+  
 <% end %>
 
 <br>
-<br>
 
-<%= link_to 'Edit login details', edit_user_registration_path %>
+</div>
