@@ -9,7 +9,7 @@
                 <%= form_with url:"/donate", method: :post do |form| %>
                     <div class="field">
                         <%= form.label "Amount ($AUD)", class:"lead" %>
-                        <%= form.number_field :amount %>
+                        <%= form.number_field :amount, in: 1..1000 %>
                         <%= form.submit "Submit", class: "btn btn-primary" %>
                     </div>
                     <br>

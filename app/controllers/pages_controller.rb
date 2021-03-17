@@ -39,7 +39,7 @@ class PagesController < ApplicationController
 
   # Shows user that the donation has been a success
   def success
-    @amount = params[:donationAmount]
+    @amount = params[:donationAmount].to_i/100
   end
 
 end
