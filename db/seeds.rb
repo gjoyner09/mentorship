@@ -7,26 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Gender seeds
-Gender.create(gender_name: "Female")
-Gender.create(gender_name: "Male")
-Gender.create(gender_name: "Nonbinary")
-Gender.create(gender_name: "Intersex")
-Gender.create(gender_name: "Unsure")
-Gender.create(gender_name: "Other")
+gender1 = Gender.create(gender_name: "Female")
+gender2 = Gender.create(gender_name: "Male")
+gender3 = Gender.create(gender_name: "Nonbinary")
+gender4 = Gender.create(gender_name: "Intersex")
+gender5 = Gender.create(gender_name: "Unsure")
+gender6 = Gender.create(gender_name: "Other")
 
 # Gender identity seeds
-Identity.create(identity_name: "Transgender")
-Identity.create(identity_name: "Cisgender")
-Identity.create(identity_name: "Unsure")
-Identity.create(identity_name: "Other")
+identity1 = Identity.create(identity_name: "Transgender")
+identity2 = Identity.create(identity_name: "Cisgender")
+identity3 = Identity.create(identity_name: "Unsure")
+identity4 = Identity.create(identity_name: "Other")
 
 # Sexuality seeds
-Sexuality.create(sexuality_name: "Gay/lesbian")
-Sexuality.create(sexuality_name: "Bisexual/pansexual")
-Sexuality.create(sexuality_name: "Asexual")
-Sexuality.create(sexuality_name: "Queer")
-Sexuality.create(sexuality_name: "Unsure")
-Sexuality.create(sexuality_name: "Other")
+sexuality1 = Sexuality.create(sexuality_name: "Gay/lesbian")
+sexuality2 = Sexuality.create(sexuality_name: "Bisexual/pansexual")
+sexuality3 = Sexuality.create(sexuality_name: "Asexual")
+sexuality4 = Sexuality.create(sexuality_name: "Queer")
+sexuality5 = Sexuality.create(sexuality_name: "Heterosexual")
+sexuality6 = Sexuality.create(sexuality_name: "Unsure")
+sexuality7 = Sexuality.create(sexuality_name: "Other")
 
 # Country seeds
 Country.create(country_name: "Afghanistan")
@@ -225,3 +226,216 @@ Country.create(country_name: "Vietnam")
 Country.create(country_name: "Yemen")
 Country.create(country_name: "Zambia")
 Country.create(country_name: "Zimbabwe")
+
+# Tets user seeds
+user1 = User.new(email: "test@test", password: "testpw", password_confirmation: "testpw")
+user1.skip_confirmation!
+user1.save!
+user2 = User.create(email: "test2@test", password: "testpw", password_confirmation: "testpw")
+user2.skip_confirmation!
+user2.save!
+user3 = User.create(email: "test3@test", password: "testpw", password_confirmation: "testpw")
+user3.skip_confirmation!
+user3.save!
+user4 = User.create(email: "test4@test", password: "testpw", password_confirmation: "testpw")
+user4.skip_confirmation!
+user4.save!
+user5 = User.create(email: "test5@test", password: "testpw", password_confirmation: "testpw")
+user5.skip_confirmation!
+user5.save!
+user6 = User.create(email: "test6@test", password: "testpw", password_confirmation: "testpw")
+user6.skip_confirmation!
+user6.save!
+user7 = User.create(email: "test7@test", password: "testpw", password_confirmation: "testpw")
+user7.skip_confirmation!
+user7.save!
+user8 = User.create(email: "test8@test", password: "testpw", password_confirmation: "testpw")
+user8.skip_confirmation!
+user8.save!
+user9 = User.create(email: "test9@test", password: "testpw", password_confirmation: "testpw")
+user9.skip_confirmation!
+user9.save!
+user10 = User.create(email: "test10@test", password: "testpw", password_confirmation: "testpw")
+user10.skip_confirmation!
+user10.save!
+
+# Test profile seeds
+profile = Profile.new(
+    name: "David",
+    age: 35,
+    reason_for_interest: "I would love to help other LGBTQ people and chat with them about whatever they need.",
+    interests: "Basketball, traveling, food, tennis, tv",
+    discussion_topics: "I'm happy to discuss anything that the mentee wants!",
+    country_id: Country.find_by(country_name: "Israel").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality1.id,
+    identity_id: identity2.id,
+    mentor: true,
+    mentor_public: true,
+    mentor_availability: true,
+    user_id: user1.id
+)
+profile.picture.attach(io: File.open('app/assets/images/grey.jpg'), filename: 'grey.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Jean",
+    age: 26,
+    reason_for_interest: "I wish I'd had a mentor when I was younger. I'd love to give back!",
+    interests: "Baking, history, dogs",
+    discussion_topics: "I'm happy to discuss anything, especially relationships and coming out",
+    country_id: Country.find_by(country_name: "Mexico").id,
+    gender_id: gender1.id,
+    sexuality_id: sexuality2.id,
+    identity_id: identity2.id,
+    mentor: true,
+    mentor_public: true,
+    mentor_availability: true,
+    user_id: user2.id
+)
+profile.picture.attach(io: File.open('app/assets/images/woman.jpg'), filename: 'woman.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "John",
+    age: 52,
+    reason_for_interest: "I like giving back to the queer community and am hoping to help out here",
+    interests: "Volleyball, cooking, reading, chatting with friends",
+    discussion_topics: "I've developed a good career so I'm happy to talk about that, or anything else",
+    country_id: Country.find_by(country_name: "Australia").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality2.id,
+    identity_id: identity1.id,
+    mentor: true,
+    mentor_public: true,
+    mentor_availability: true,
+    user_id: user3.id
+)
+profile.picture.attach(io: File.open('app/assets/images/man.jpg'), filename: 'man.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Dean",
+    age: 31,
+    reason_for_interest: "I came across this program online and thought it would be a good way to help other queer people",
+    interests: "Music, concerts, fashion, video games, technology",
+    discussion_topics: "I have a homophobic family so I'm happy to talk about that experience",
+    country_id: Country.find_by(country_name: "Germany").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality1.id,
+    identity_id: identity2.id,
+    mentor: true,
+    mentor_public: true,
+    mentor_availability: true,
+    user_id: user4.id
+)
+profile.picture.attach(io: File.open('app/assets/images/grey.jpg'), filename: 'grey.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Netta",
+    age: 39,
+    reason_for_interest: "I struggled with my sexuality growing up and I don't want others to have to do the same",
+    interests: "Creative writing, standup comedy, theatre",
+    discussion_topics: "I'm especially good at helping people through the coming out process",
+    country_id: Country.find_by(country_name: "Ireland").id,
+    gender_id: gender1.id,
+    sexuality_id: sexuality4.id,
+    identity_id: identity2.id,
+    mentor: true,
+    mentor_public: true,
+    mentor_availability: true,
+    user_id: user5.id
+)
+profile.picture.attach(io: File.open('app/assets/images/woman.jpg'), filename: 'woman.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Joshua",
+    age: 22,
+    reason_for_interest: "I could use a queer friend and mentor to talk to",
+    interests: "Science, exploring the world, trivia",
+    discussion_topics: "I recently came out and have never had a relationship, so I'd love someone who could help with that",
+    country_id: Country.find_by(country_name: "South Africa").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality4.id,
+    identity_id: identity2.id,
+    mentee: true,
+    mentee_public: true,
+    mentee_availability: true,
+    user_id: user6.id
+)
+profile.picture.attach(io: File.open('app/assets/images/man.jpg'), filename: 'man.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Charlotte",
+    age: 35,
+    reason_for_interest: "I recently came out at the age of 34 and I could use some help",
+    interests: "Movies and film, tv, music, concerts",
+    discussion_topics: "How to be queer while in a heterosexual relationship",
+    country_id: Country.find_by(country_name: "China").id,
+    gender_id: gender1.id,
+    sexuality_id: sexuality2.id,
+    identity_id: identity2.id,
+    mentee: true,
+    mentee_public: true,
+    mentee_availability: true,
+    user_id: user7.id
+)
+profile.picture.attach(io: File.open('app/assets/images/woman.jpg'), filename: 'woman.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Hamish",
+    age: 19,
+    reason_for_interest: "I don't know any other gay people so I'd like to meet some",
+    interests: "Making short films, learning foreign languages",
+    discussion_topics: "What life is like as an out gay person. I'm still in the closet",
+    country_id: Country.find_by(country_name: "Canada").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality1.id,
+    identity_id: identity2.id,
+    mentee: true,
+    mentee_public: true,
+    mentee_availability: true,
+    user_id: user8.id
+)
+profile.picture.attach(io: File.open('app/assets/images/grey.jpg'), filename: 'grey.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Molly",
+    age: 26,
+    reason_for_interest: "I recently came out as trans and could use some help",
+    interests: "Cooking, reading, playing games online",
+    discussion_topics: "Trans issues",
+    country_id: Country.find_by(country_name: "Australia").id,
+    gender_id: gender1.id,
+    sexuality_id: sexuality4.id,
+    identity_id: identity1.id,
+    mentee: true,
+    mentee_public: true,
+    mentee_availability: true,
+    user_id: user9.id
+)
+profile.picture.attach(io: File.open('app/assets/images/woman.jpg'), filename: 'woman.jpg')
+profile.save!
+
+profile = Profile.new(
+    name: "Ahmad",
+    age: 30,
+    reason_for_interest: "I struggle with my sexuality in a very conservative country",
+    interests: "Movies and tv, music, card games",
+    discussion_topics: "How to deal with being gay in a country like Afghanistan",
+    country_id: Country.find_by(country_name: "Afghanistan").id,
+    gender_id: gender2.id,
+    sexuality_id: sexuality1.id,
+    identity_id: identity2.id,
+    mentee: true,
+    mentee_public: true,
+    mentee_availability: true,
+    user_id: user10.id
+)
+profile.picture.attach(io: File.open('app/assets/images/man.jpg'), filename: 'man.jpg')
+profile.save!
