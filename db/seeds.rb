@@ -228,26 +228,16 @@ Country.create(country_name: "Zambia")
 Country.create(country_name: "Zimbabwe")
 
 # Tets user seeds
-user1 = User.new(email: "test@test", password: "testpw", password_confirmation: "testpw")
-user1.save!
+user1 = User.create(email: "test@test", password: "testpw", password_confirmation: "testpw")
 user2 = User.create(email: "test2@test", password: "testpw", password_confirmation: "testpw")
-user2.save!
 user3 = User.create(email: "test3@test", password: "testpw", password_confirmation: "testpw")
-user3.save!
 user4 = User.create(email: "test4@test", password: "testpw", password_confirmation: "testpw")
-user4.save!
 user5 = User.create(email: "test5@test", password: "testpw", password_confirmation: "testpw")
-user5.save!
 user6 = User.create(email: "test6@test", password: "testpw", password_confirmation: "testpw")
-user6.save!
 user7 = User.create(email: "test7@test", password: "testpw", password_confirmation: "testpw")
-user7.save!
 user8 = User.create(email: "test8@test", password: "testpw", password_confirmation: "testpw")
-user8.save!
 user9 = User.create(email: "test9@test", password: "testpw", password_confirmation: "testpw")
-user9.save!
 user10 = User.create(email: "test10@test", password: "testpw", password_confirmation: "testpw")
-user10.save!
 
 # Test profile seeds
 profile = Profile.new(
