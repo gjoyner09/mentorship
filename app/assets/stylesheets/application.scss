@@ -80,6 +80,14 @@
             font-weight: 300;
         }
         
+        .nav-link {
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            border-bottom: 2px solid black;
+        }
+        
         @media only screen and (max-width: 500px) {
             .home-font {
                 font-size: 32px;
