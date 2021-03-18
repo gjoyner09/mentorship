@@ -56,6 +56,3 @@ gem "aws-sdk-s3", "~> 1.89"
 
 # Stripe for payment
 gem "stripe", "~> 5.30"
-
-# Bootstrap for styling
-gem 'bootstrap', '~> 4.6'
