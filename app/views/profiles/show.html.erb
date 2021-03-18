@@ -4,8 +4,16 @@
     <h1>Profile: <%=@profile.name%></h1>
     <br>
     <div class="row">
-      <%# Left half of screen: profile info %>
-      <div class="col">
+      <%# Left half of the screen: image (or blank) %>
+      <% if @profile.picture.attached? %>
+        <div class="col-12 col-md-6">
+            <%= image_tag @profile.picture, class:"show-img" %>
+            <br>
+            <br>
+        </div>
+      <% end %>
+      <%# Right half of screen (if there's an image, or left if not): profile info %>
+      <div class="col-12 col-md-6">
         <div class = "card">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
@@ -98,14 +106,10 @@
           <br>
         <% end %>
       </div>
-      <%# Right half of the screen: image (or blank) %>
-      <div class="col">
-        <% if @profile.picture.attached? %>
-          <%= image_tag @profile.picture, class:"show-img" %>
-        <% end %>
-      </div>
     </div>
   </div>
+
+  <br>
 
 <% else %>
 <div class="px-4 mt-4 container">
