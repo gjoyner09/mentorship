@@ -75,7 +75,7 @@
             <%= form.hidden_field :receiver_id, value: @profile.user_id %>
             <%= form.hidden_field :sender_role, value: "mentee" %>
             <%= form.hidden_field :receiver_role, value: "mentor" %>
-            <%= form.submit "Request as mentor", class: "btn btn-primary" %>
+            <%= form.submit "Request as mentor", class: "btn btn-primary", data: { confirm: "Are you sure you want to request as mentor?" }  %>
           <% end %>
           <br>
         <% end %>
@@ -87,7 +87,7 @@
             <%= form.hidden_field :receiver_id, value: @profile.user_id %>
             <%= form.hidden_field :sender_role, value: "mentor" %>
             <%= form.hidden_field :receiver_role, value: "mentee" %>
-            <%= form.submit "Request as mentee", class: "btn btn-primary" %>
+            <%= form.submit "Request as mentee", class: "btn btn-primary", data: { confirm: "Are you sure you want to request as mentee?" }  %>
           <% end %>
           <br>
         <% end %>

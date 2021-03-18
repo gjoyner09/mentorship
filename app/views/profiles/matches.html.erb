@@ -7,7 +7,7 @@
                 <div class="col-12 col-md-6">
                     <h1>Received Requests</h1>
                     <% if @user_requests.empty? %>
-                        <div class="alert alert-primary" role="alert">You have not received any active requests</div>
+                        <div class="alert alert-primary" role="alert">You have not received any active requests. Requests you've sent are only visible to the person you've sent the request to.</div>
                     <% else %>
                         <div class = "table-responsive">
                             <table class="table">
@@ -53,7 +53,7 @@
 
                     <h1>Matches</h1>
                     <% if @user_matches.empty? %>
-                        <div class="alert alert-primary" role="alert">You do not have any active mentor/mentee matches</div>
+                        <div class="alert alert-primary" role="alert">You do not have any active mentor/mentee matches.</div>
                     <% else %>
                         <div class = "table-responsive">
                             <table class = "table">
