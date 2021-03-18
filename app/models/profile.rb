@@ -3,6 +3,7 @@ class Profile < ApplicationRecord
   belongs_to :gender
   belongs_to :sexuality
   belongs_to :identity
+  belongs_to :user
   has_one_attached :picture
 
   validates :name, :age, :reason_for_interest, :interests, :discussion_topics, presence: true
