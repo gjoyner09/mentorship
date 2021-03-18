@@ -20,6 +20,8 @@
 }
 
 .home-div {
+    background: url("background.png") no-repeat center center fixed;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -30,8 +32,7 @@
 }
 
 .background-img {
-    width: 100%;
-    height: auto;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
