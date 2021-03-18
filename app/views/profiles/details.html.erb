@@ -11,8 +11,14 @@
         <div class="alert alert-warning" role="alert">Mentors are currently not able to see you because your profile is not public and/or you are not available as a mentor. You can still see mentors and they will be able to see you if you message or request them.</div>
       <% end %>
       <div class="row">
-        <%# Left half of screen: profile info %>
-        <div class="col">
+        <%# Left half of the screen: image (or blank) %>
+        <% if @user_profile.picture.attached? %>
+          <div class="col-12 col-md-6">
+              <%= image_tag @user_profile.picture, class:"show-img" %>
+          </div>
+        <% end %>
+        <%# Right half of screen (or left half if there's no picture): profile info %>
+        <div class="col-12 col-md-6">
           <div class = "card">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
@@ -100,15 +106,22 @@
           <br>
 
         </div>
-        <%# Right half of the screen: image (or blank) %>
-        <div class="col">
-          <% if @user_profile.picture.attached? %>
-            <%= image_tag @user_profile.picture, class:"show-img" %>
-          <% end %>
-        </div>
       </div>
-      <%= link_to 'Edit profile', edit_profile_path(@user_profile), class: "btn btn-primary" %>
-      <%= link_to 'Edit login details', edit_user_registration_path, class: "btn btn-primary" %>
+      <% if @user_profile.picture.attached? %>
+        <div class="float-right">
+          <%= link_to 'Edit profile', edit_profile_path(@user_profile), class: "btn btn-primary" %>
+          <%= link_to 'Edit login details', edit_user_registration_path, class: "btn btn-primary" %>
+          <br>
+          <br>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to 'Edit profile', edit_profile_path(@user_profile), class: "btn btn-primary" %>
+          <%= link_to 'Edit login details', edit_user_registration_path, class: "btn btn-primary" %>
+          <br>
+          <br>
+        </div>
+      <% end %>
     </div>
   <% end %>
   <br>
