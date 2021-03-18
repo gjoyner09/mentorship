@@ -49,25 +49,25 @@
               <li class="list-group-item">
                 <strong>Country:</strong>
                 <%# Finds the country with the correct country id and returns the country name %>
-                <%= Country.find(@user_profile.country_id).country_name %>
+                <%= @user_profile.country.country_name %>
               </li>
 
               <li class="list-group-item">
                 <strong>Gender:</strong>
                 <%# Finds the gender with the correct gender id and returns the gender name %>
-                <%= Gender.find(@user_profile.gender_id).gender_name %>
+                <%= @user_profile.gender.gender_name %>
               </li>
 
               <li class="list-group-item">
                 <strong>Sexuality:</strong>
                 <%# Finds the sexuality with the correct sexuality id and returns the sexuality name %>
-                <%= Sexuality.find(@user_profile.sexuality_id).sexuality_name %>
+                <%= @user_profile.sexuality.sexuality_name %>
               </li>
 
               <li class="list-group-item">
                 <strong>Identity:</strong>
                 <%# Finds the identity with the correct identity id and returns the identity name %>
-                <%= Identity.find(@user_profile.identity_id).identity_name %>
+                <%= @user_profile.identity.identity_name %>
               </li>
 
               <li class="list-group-item">

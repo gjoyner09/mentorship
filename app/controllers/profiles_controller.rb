@@ -163,7 +163,7 @@ class ProfilesController < ApplicationController
 
   def set_profiles
     # Gets the list of all profiles (to be shown in mentor and mentee pages)
-    @profiles = Profile.all
+    @profiles = Profile.includes(:gender, :country, :sexuality, :identity, :user)
   end
 
 end
